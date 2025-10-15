@@ -1,0 +1,173 @@
+/* Welcome Page Specific Styles */
+.welcome-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);  /* Changed to full gradient background */
+}
+
+.welcome-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    backdrop-filter: blur(10px);  /* Added blur effect */
+}
+
+.welcome-content h1 {
+    font-size: 3.8em;  /* Increased font size */
+    color: #2c3e50;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-content p {
+    font-size: 1.6em;
+    color: #34495e;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.welcome-buttons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.welcome-btn {
+    padding: 18px 40px;
+    font-size: 1.2em;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.welcome-btn.signin {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+}
+
+.welcome-btn.create-account {
+    background: white;
+    color: #3498db;
+    border: 2px solid #3498db;
+}
+
+.welcome-btn:hover {
+    transform: translateY(-5px);
+}
+
+.welcome-btn.signin:hover {
+    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    box-shadow: 0 15px 30px rgba(52, 152, 219, 0.4);
+}
+
+.welcome-btn.create-account:hover {
+    background: rgba(52, 152, 219, 0.1);
+    border-color: #2980b9;
+}
+
+/* Added responsive styles */
+@media (max-width: 768px) {
+    .welcome-content h1 {
+        font-size: 2.8em;
+    }
+    
+    .welcome-content p {
+        font-size: 1.3em;
+    }
+    
+    .welcome-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .welcome-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+.footer {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    padding: 20px 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.footer-section p {
+    margin: 5px 0;
+    color: #ecf0f1;
+    font-size: 0.9em;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #3498db;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin: 10px 0;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}

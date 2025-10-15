@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Your Bucks</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1>Balance Your Bucks</h1>
+                </div>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="#budget" class="nav-link"><i class="fas fa-coins"></i> Budget</a></li>
+                        <li><a href="#transactions" class="nav-link"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                        <li><a href="#visualization" class="nav-link"><i class="fas fa-chart-pie"></i> Visualization</a></li>
+                        <li><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> Financial Education</a></li>
+                    </ul>
+                    <div class="profile-section">
+                        <span class="username">gokul</span>
+                        <div class="profile-pic">
+                            <img src="image.png" alt="Profile Picture">
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+
+        <div class="welcome-message">
+            <h2>Welcome to Balance Your Bucks!</h2>
+            <p>Your personal finance companion that helps you manage money smarter. Start by setting up your budget allocation below.</p>
+        </div>
+
+        <section id="budget">
+            <div class="budget-input">
+                <h2>Smart Money Allocator</h2>
+                <div class="budget-controls">
+                    <select id="budgetRule" onchange="updateBudgetRule()">
+                        <option value="50-30-20">50-30-20 Rule</option>
+                        <option value="60-30-10">60-30-10 Rule</option>
+                    </select>
+                    <input type="number" id="totalBudget" placeholder="Enter your total budget">
+                    <button onclick="calculateBudget()">Set Budget</button>
+                </div>
+            </div>
+
+            <div class="categories">
+                <div class="category" id="essentials">
+                    <p class="amount">₹0</p>
+                    <h3>Essentials (<span class="percentage">50</span>%)</h3>
+                </div>
+                <div class="category" id="personal">
+                    <p class="amount">₹0</p>
+                    <h3>Personal Expenses(<span class="percentage">30</span>%)</h3>
+                </div>
+                <div class="category" id="savings">
+                    <p class="amount">₹0</p>
+                    <h3>Savings (<span class="percentage">20</span>%)</h3>
+                </div>
+            </div>
+        </section>
+
+      
+        <section id="transactions">
+            <div class="transaction-section">
+                <h2>Add Transaction</h2>
+                <div class="transaction-form">
+                    <div class="form-group">
+                        <input type="text" id="paymentFrom" class="transaction-input" placeholder="Enter Payment Method (e.g., GPay, PhonePe)">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="paymentTo" class="transaction-input" placeholder="Payment To (Person/Shop Name)">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="paymentDate" class="transaction-input">
+                    </div>
+                    <div class="form-group">
+                        <select id="categorySelect" class="transaction-input">
+                            <option value="essentials">Essentials</option>
+                            <option value="personal">Personal Expenses</option>
+                            <option value="savings">Savings</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="transactionAmount" class="transaction-input" placeholder="Amount">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="transactionReason" class="transaction-input" placeholder="Reason for Payment">
+                    </div>
+                    <button onclick="addTransaction()" class="add-transaction-btn">Add Transaction</button>
+                </div>
+            </div>
+
+            <div class="transaction-history">
+                <h2>Transaction History</h2>
+                <div id="transactionList"></div>
+            </div>
+        </section>
+
+       
+        <section id="visualization">
+            <div class="charts">
+                <h2>Expense Analysis</h2>
+                <div class="chart-grid">
+                    <div class="chart-container">
+                        <h3>Amount vs Date Analysis</h3>
+                        <canvas id="dateChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Amount vs Payment To Analysis</h3>
+                        <canvas id="paymentToChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Amount vs Payment From Analysis</h3>
+                        <canvas id="paymentFromChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Combined Payment Analysis</h3>
+                        <canvas id="combinedChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+        <section id="education">
+            <div class="financial-education">
+                <h2>Financial Education</h2>
+                <div class="tips-container">
+                    <div class="tip-of-day">
+                        <h3>Tip of the Day</h3>
+                        <div id="tipContent" class="tip-content">
+                            <p class="tip-text">Start your financial journey by following the 50/30/20 rule: Allocate 50% of your income to necessities, 30% to personal spending, and 20% to savings and debt repayment. This simple budgeting method can help you maintain a healthy financial balance.</p>
+                            <span class="tip-category">Budgeting Basics</span>
+                            <span class="tip-date">October 25, 2023</span>
+                        </div>
+                    </div>
+                    <div class="learning-resources">
+                        <h3>Financial Resources</h3>
+                        <div class="resource-grid">
+                            <div class="resource-card" onclick="showResourceContent('50-30-20')">
+                                <i class="fas fa-chart-pie"></i>
+                                <h4>Understanding the 50/30/20 Rule</h4>
+                                <p>Learn how to allocate your income effectively</p>
+                            </div>
+                            <div class="resource-card" onclick="showResourceContent('emergency')">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Building an Emergency Fund</h4>
+                                <p>Prepare for unexpected financial challenges</p>
+                            </div>
+                            <div class="resource-card" onclick="showResourceContent('saving')">
+                                <i class="fas fa-piggy-bank"></i>
+                                <h4>Smart Saving Strategies</h4>
+                                <p>Effective techniques to grow your savings</p>
+                            </div>
+                            <div class="resource-card" onclick="showResourceContent('debt')">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <h4>Debt Management Tips</h4>
+                                <p>Strategies to manage and reduce debt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Developer</h3>
+                <p><i class="fas fa-user"></i> Gokul Sowri Galla</p>
+                <p><i class="fas fa-envelope"></i> gokulgalla2005@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +91 8309936700</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Me</h3>
+                <div class="social-links">
+                    <a href="https://github.com/gokul3011-c" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/galla-gokul-sowri-350856289/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:gokulgalla2005@gmail.com"><i class="fa-solid fa-square-envelope" ></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>About Project</h3>
+                <p>Balance Your Bucks - A Financial Management System</p>
+                <p>© 2024 All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    </body>
+</html>

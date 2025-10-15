@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Balance Your Bucks</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1>Balance Your Bucks</h1>
+                </div>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="#budget" class="nav-link"><i class="fas fa-coins"></i> Budget</a></li>
+                        <li><a href="#transactions" class="nav-link"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                        <li><a href="#visualization" class="nav-link"><i class="fas fa-chart-pie"></i> Visualization</a></li>
+                        <li><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> Financial Education</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="settings-container">
+            <a href="Main.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+            <div class="settings-box">
+                <h2>Settings</h2>
+                <div class="settings-tabs">
+                    <button class="tab-btn active" onclick="openTab('personal')">Personal Information</button>
+                    <button class="tab-btn" onclick="openTab('notifications')">Notifications</button>
+                    <button class="tab-btn" onclick="openTab('export')">Export Transactions</button>
+                </div>
+
+                <form class="settings-form" onsubmit="saveChanges(event)">
+                    <div id="personal" class="tab-content active">
+                        <div class="settings-section">
+                            <h3>Personal Information</h3>
+                            <button type="button" class="edit-btn" onclick="toggleEditMode()">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            
+                            <!-- View Mode -->
+                            <div id="viewMode" class="info-display">
+                                <div class="info-row">
+                                    <label>Profile Picture:</label>
+                                    <div class="profile-pic-container">
+                                        <img id="currentProfilePic" src="image.png" alt="Profile Picture" class="settings-profile-pic">
+                                        <button type="button" class="change-pic-btn" onclick="triggerFileInput()">
+                                            <i class="fas fa-camera"></i> Change Picture
+                                        </button>
+                                        <input type="file" id="profilePicInput" accept="image/*" style="display: none" onchange="handleProfilePicChange(event)">
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <label>Full Name:</label>
+                                    <span class="info-value" data-field="fullName">John Doe</span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Username:</label>
+                                    <span class="info-value" data-field="username">johndoe123</span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Email:</label>
+                                    <span class="info-value" data-field="email">john@example.com</span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Phone Number:</label>
+                                    <span class="info-value" data-field="phone">+1 234 567 8900</span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Age:</label>
+                                    <span class="info-value" data-field="age">28</span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Gender:</label>
+                                    <span class="info-value" data-field="gender">Male</span>
+                                </div>
+                                <div class="info-row">
+                                    <label>Address:</label>
+                                    <span class="info-value" data-field="address">123 Main Street, City, Country</span>
+                                </div>
+                            </div>
+
+                            <!-- Edit Mode -->
+                            <div id="editMode" class="input-fields" style="display: none;">
+                                <div class="input-group">
+                                    <label>Full Name</label>
+                                    <input type="text" name="fullName" placeholder="Enter your full name">
+                                </div>
+                                <div class="input-group">
+                                    <label>Username</label>
+                                    <input type="text" name="username" placeholder="Enter username">
+                                </div>
+                                <div class="input-group">
+                                    <label>Email</label>
+                                    <input type="email" name="email" placeholder="Enter email">
+                                </div>
+                                <div class="input-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" name="phone" placeholder="Enter phone number">
+                                </div>
+                                <div class="input-group">
+                                    <label>Age</label>
+                                    <input type="number" name="age" placeholder="Enter your age">
+                                </div>
+                                <div class="input-group">
+                                    <label>Gender</label>
+                                    <select name="gender">
+                                        <option value="">Select gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Address</label>
+                                    <textarea name="address" placeholder="Enter your address"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="notifications" class="tab-content">
+                        <div class="settings-section">
+                            <h3>Notification Preferences</h3>
+                            <div class="notification-option">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="enableAllNotifications" onchange="toggleAllNotifications(this.checked)">
+                                    <span class="slider"></span>
+                                </label>
+                                <div class="notification-text">
+                                    <h4>Enable All Notifications</h4>
+                                    <p>Receive all important updates and alerts</p>
+                                </div>
+                            </div>
+
+                            <div class="notification-option">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" class="notification-toggle">
+                                    <span class="slider"></span>
+                                </label>
+                                <div class="notification-text">
+                                    <h4>Budget Limit Alerts</h4>
+                                    <p>Get notified when approaching budget limits</p>
+                                </div>
+                            </div>
+
+                            <div class="notification-option">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" class="notification-toggle">
+                                    <span class="slider"></span>
+                                </label>
+                                <div class="notification-text">
+                                    <h4>Transaction Alerts</h4>
+                                    <p>Receive alerts to add new transactions</p>
+                                </div>
+                            </div>
+
+                            <div class="notification-option">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" class="notification-toggle">
+                                    <span class="slider"></span>
+                                </label>
+                                <div class="notification-text">
+                                    <h4>Financial Tips</h4>
+                                    <p>Get periodic financial advice and tips</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="export" class="tab-content">
+                        <div class="settings-section">
+                            <h3>Export Transactions</h3>
+                            <div class="export-section">
+                                <div class="export-option">
+                                    <div class="notification-text">
+                                        <h4>Monthly Transaction Report</h4>
+                                        
+                                    </div>
+                                    <div class="export-controls">
+                                        <select class="month-selector" id="monthSelector">
+                                            <option value="">Select Month</option>
+                                            <option value="01">January</option>
+                                            <option value="02">February</option>
+                                            <option value="03">March</option>
+                                            <option value="04">April</option>
+                                            <option value="05">May</option>
+                                            <option value="06">June</option>
+                                            <option value="07">July</option>
+                                            <option value="08">August</option>
+                                            <option value="09">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                        <select class="month-selector" id="yearSelector">
+                                            <option value="">Select Year</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                        </select>
+                                        <button class="export-btn" onclick="exportTransactions()">
+                                            <i class="fas fa-download"></i> Export
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="save-settings-btn" style="display: none;">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <button class="logout-btn" onclick="window.location.href='index.html'">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+
+    <script>
+        function openTab(tabName) {
+            const tabs = document.getElementsByClassName('tab-content');
+            const buttons = document.getElementsByClassName('tab-btn');
+            const saveBtn = document.querySelector('.save-settings-btn');
+            
+            for (let tab of tabs) {
+                tab.classList.remove('active');
+            }
+            
+            for (let btn of buttons) {
+                btn.classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+            
+            // Always hide save button when switching tabs
+            saveBtn.style.display = 'none';
+        }
+
+        function toggleEditMode() {
+            const viewMode = document.getElementById('viewMode');
+            const editMode = document.getElementById('editMode');
+            const editBtn = document.querySelector('.edit-btn');
+            const saveBtn = document.querySelector('.save-settings-btn');
+            const currentTab = document.querySelector('.tab-content.active').id;
+            
+            if (viewMode.style.display !== 'none') {
+                viewMode.style.display = 'none';
+                editMode.style.display = 'block';
+                editBtn.innerHTML = '<i class="fas fa-times"></i> Cancel';
+                // Only show save button if we're in personal tab
+                saveBtn.style.display = currentTab === 'personal' ? 'block' : 'none';
+            } else {
+                viewMode.style.display = 'block';
+                editMode.style.display = 'none';
+                editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit';
+                saveBtn.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script>
+    function toggleAllNotifications(checked) {
+        const notificationToggles = document.querySelectorAll('.notification-toggle');
+        notificationToggles.forEach(toggle => {
+            toggle.checked = checked;
+        });
+    }
+
+    // Add event listener to individual toggles to update master toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const individualToggles = document.querySelectorAll('.notification-toggle');
+        const masterToggle = document.getElementById('enableAllNotifications');
+    
+        individualToggles.forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const allChecked = Array.from(individualToggles).every(t => t.checked);
+                masterToggle.checked = allChecked;
+            });
+        });
+    });
+    </script>
+    <script>
+        function triggerFileInput() {
+            document.getElementById('profilePicInput').click();
+        }
+
+        function handleProfilePicChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('currentProfilePic').src = e.target.result;
+                    // You would typically upload the image to a server here
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function exportTransactions() {
+            const month = document.getElementById('monthSelector').value;
+            const year = document.getElementById('yearSelector').value;
+            const saveBtn = document.querySelector('.save-settings-btn');
+            
+            if (!month || !year) {
+                alert('Please select both month and year');
+                return;
+            }
+            
+            // Hide save button after export
+            saveBtn.style.display = 'none';
+            
+            // Here you would typically make an API call to get the transactions
+            alert(`Exporting transactions for ${month}/${year}`);
+        }
+    </script>
+</body>
+</html>
